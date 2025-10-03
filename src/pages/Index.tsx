@@ -64,11 +64,43 @@ const Index = () => {
     },
   ];
 
-  const achievements = [
-    { title: 'Чемпион России', year: '2023', holder: 'Иван Кузнецов (ученик)' },
-    { title: 'Золото на Кубке Тверской области', year: '2023', holder: 'Команда студии' },
-    { title: 'Мастер спорта', year: '2022', holder: 'Алексей Волков (тренер)' },
-    { title: '1 место ЦФО', year: '2023', holder: 'Анна Смирнова (ученица)' },
+  const groups = [
+    {
+      name: 'Взрослые начинающие',
+      description: 'Для тех, кто только начинает свой путь в тайском боксе',
+      level: 'Новички',
+      ages: '18-45 лет',
+    },
+    {
+      name: 'Взрослые продвинутые',
+      description: 'Интенсивные тренировки для опытных спортсменов',
+      level: 'Продвинутый',
+      ages: '18-45 лет',
+    },
+    {
+      name: 'Детская группа',
+      description: 'Развитие координации, дисциплины и уверенности',
+      level: 'Все уровни',
+      ages: '7-16 лет',
+    },
+  ];
+
+  const reviews = [
+    {
+      name: 'Дмитрий К.',
+      text: 'Занимаюсь уже полгода. Отличные тренеры, профессиональный подход. Скинул 8 кг и чувствую себя супер!',
+      rating: 5,
+    },
+    {
+      name: 'Анна С.',
+      text: 'Привела сына на занятия - он в восторге! Тренер Мария умеет найти подход к детям. Рекомендую!',
+      rating: 5,
+    },
+    {
+      name: 'Игорь М.',
+      text: 'Пробное занятие прошло на высшем уровне. Сразу записался на абонемент. Атмосфера в зале боевая и мотивирующая.',
+      rating: 5,
+    },
   ];
 
   return (
@@ -85,7 +117,8 @@ const Index = () => {
               <a href="#trainers" className="text-white hover:text-primary transition-colors">Тренеры</a>
               <a href="#schedule" className="text-white hover:text-primary transition-colors">Расписание</a>
               <a href="#prices" className="text-white hover:text-primary transition-colors">Цены</a>
-              <a href="#achievements" className="text-white hover:text-primary transition-colors">Достижения</a>
+              <a href="#groups" className="text-white hover:text-primary transition-colors">Группы</a>
+              <a href="#reviews" className="text-white hover:text-primary transition-colors">Отзывы</a>
               <a href="#contacts" className="text-white hover:text-primary transition-colors">Контакты</a>
             </div>
             <Button size="sm" className="bg-primary hover:bg-primary/90">
@@ -269,36 +302,95 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="achievements" className="py-20 bg-gradient-to-br from-secondary to-secondary/90 text-white">
+      <section className="py-20 bg-gradient-to-br from-primary to-accent text-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Наши Достижения</h2>
-          <p className="text-center text-gray-300 mb-12 text-lg">
-            Гордимся успехами наших учеников и тренеров
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <div className="text-6xl">🎁</div>
+            <h2 className="text-4xl md:text-6xl font-extrabold">Пробное занятие БЕСПЛАТНО</h2>
+            <p className="text-xl md:text-2xl text-white/90">
+              Приходите на первую тренировку без оплаты!<br />
+              Познакомитесь с тренером, попробуете тайский бокс и оцените атмосферу зала
+            </p>
+            <div className="flex flex-col md:flex-row gap-6 justify-center items-center pt-4">
+              <div className="flex items-center gap-3">
+                <Icon name="CheckCircle2" size={32} />
+                <span className="text-lg">Без предоплаты</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Icon name="CheckCircle2" size={32} />
+                <span className="text-lg">Вся экипировка на месте</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Icon name="CheckCircle2" size={32} />
+                <span className="text-lg">Любой уровень подготовки</span>
+              </div>
+            </div>
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-xl px-12 py-6 h-auto mt-8">
+              Записаться на пробное
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section id="groups" className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Группы и направления</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">
+            Подберём подходящую группу для вашего уровня
           </p>
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              {achievements.map((achievement, idx) => (
-                <Card key={idx} className="bg-white/10 border-white/20 hover-scale backdrop-blur-sm">
-                  <CardContent className="p-6 flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <Icon name="Award" className="text-accent" size={40} />
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {groups.map((group, idx) => (
+              <Card key={idx} className="hover-scale border-2 hover:border-primary transition-all">
+                <CardContent className="p-8 space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto">
+                    <Icon name="Users" className="text-white" size={32} />
+                  </div>
+                  <div className="text-center space-y-3">
+                    <h3 className="text-2xl font-bold">{group.name}</h3>
+                    <p className="text-muted-foreground">{group.description}</p>
+                    <div className="pt-2 space-y-2">
+                      <div className="flex items-center justify-center gap-2">
+                        <Icon name="Target" className="text-primary" size={20} />
+                        <span className="font-semibold">{group.level}</span>
+                      </div>
+                      <div className="flex items-center justify-center gap-2">
+                        <Icon name="Calendar" className="text-accent" size={20} />
+                        <span className="text-sm">{group.ages}</span>
+                      </div>
                     </div>
-                    <div className="space-y-1">
-                      <h3 className="text-xl font-bold text-white">{achievement.title}</h3>
-                      <p className="text-accent font-semibold">{achievement.year}</p>
-                      <p className="text-gray-300 text-sm">{achievement.holder}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            <div className="flex items-center justify-center">
-              <img
-                src="/img/36642f79-7d06-4778-a586-d70c167e0803.jpg"
-                alt="Награды и достижения"
-                className="rounded-lg shadow-2xl w-full max-w-md h-auto object-cover"
-              />
-            </div>
+                  </div>
+                  <Button className="w-full" variant="outline">
+                    Подробнее
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="reviews" className="py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Отзывы учеников</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">
+            Что говорят о нас наши спортсмены
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {reviews.map((review, idx) => (
+              <Card key={idx} className="hover-scale">
+                <CardContent className="p-6 space-y-4">
+                  <div className="flex gap-1">
+                    {Array.from({ length: review.rating }).map((_, i) => (
+                      <Icon key={i} name="Star" className="text-accent fill-accent" size={20} />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground italic">"{review.text}"</p>
+                  <div className="pt-2">
+                    <p className="font-bold">{review.name}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
